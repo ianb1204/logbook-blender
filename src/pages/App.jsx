@@ -4,18 +4,18 @@ import { useEffect } from 'react'
 
 const acceptedLanguages = ['fr', 'en']
 
-const App = (props) => {
+const App = () => {
   const navigate = useNavigate()
   const params = useParams()
 
   useEffect(()=>{
     const lang = params.lang
     if(!lang || acceptedLanguages.indexOf(lang) < 0) navigate('/fr')
-  }, [params])
+  }, [params, navigate])
 
   return (
     <div className="AppContainer">
-      {params.lang}
+      {"Hello world"}
     </div>
   )
 }
