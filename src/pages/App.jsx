@@ -10,7 +10,7 @@ const App = () => {
 
   useEffect(()=>{
     const lang = params.lang
-    if(!lang || acceptedLanguages.indexOf(lang) < 0) navigate('/fr')
+    if(!lang || acceptedLanguages.indexOf(lang) < 0 || params['*']) navigate('/fr')
   }, [params, navigate])
 
   return (
