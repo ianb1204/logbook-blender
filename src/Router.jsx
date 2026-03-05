@@ -3,7 +3,7 @@ import App from "./pages/App.jsx";
 
 const Router = (props) => {
     return (
-        <BrowserRouter basename='/logbook-blender/'>
+        <BrowserRouter basename='/blender-logbook/'>
             <Routes>
                 <Route path={'/'} element={<Navigate to={"/fr"}/>}/>
                 <Route path={'/:lang/*'} element={<App {...props}/>}/>
