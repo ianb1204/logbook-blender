@@ -5,7 +5,7 @@ const Router = (props) => {
     return (
         <BrowserRouter basename='/logbook-blender/'>
             <Routes>
-                <Route path={'/*'} element={<Navigate to={"/fr"}/>}/>
+                <Route path={'/*'} element={<App {...props}/>}/>
                 <Route path={'/:lang'} element={<App {...props}/>}/>
             </Routes>
         </BrowserRouter>
