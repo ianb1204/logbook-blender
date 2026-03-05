@@ -5,7 +5,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/logbook-blender/',
+  base: '/blender-logbook/',
   plugins: [react(), svgr()],
   build: {
     outDir: 'dist'
