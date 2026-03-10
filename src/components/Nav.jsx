@@ -22,16 +22,11 @@ const Nav = (props) => {
     }, [])
 
     const handleResize = (e) => {
-        console.log(e.target.innerWidth, openedRef.current)
         if(openedRef.current && e.target.innerWidth > 1024) {
             setOpened(false)
             openedRef.current = false
         }
     }
-
-    useEffect(()=>{
-        console.log(openedRef.current)
-    }, [openedRef.current])
 
     const languageOptions = [{id:"fr", label:'fr-label'}, {id:'en', label:'en-label'}]
 

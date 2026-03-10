@@ -1,44 +1,40 @@
 import { Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import './App.scss'
-import { useEffect, useState } from 'react'
-import Nav from '../components/Nav'
-import Body from '../components/Body'
-import breadcrumbs from './../content/breadcrumbs.json'
+import { useEffect } from 'react'
+import Nav from './components/Nav'
+import breadcrumbs from './content/breadcrumbs.json'
 import { useTranslation } from 'react-i18next'
 
 const acceptedLanguages = ['fr', 'en']
 
 const App = () => {
   const { i18n } = useTranslation()
-  const [currentPage, setCurrentPage] = useState('home')
 
   const navigate = useNavigate()
   const params = useParams()
 
-  useEffect(()=>{
-    const lang = params.lang
-    if(!lang || acceptedLanguages.indexOf(lang) < 0) navigate('/fr')
-    else i18n.changeLanguage(lang)
-    
-    const currentBreadcrumbs = breadcrumbs[lang]
-    if(currentBreadcrumbs){
-      const pages = Object.keys(currentBreadcrumbs)
-      const tab = params['*'].split('/')
-      if(tab[0] && tab[0] !== currentPage || !tab[0] && currentPage !== 'home'){
-        if(tab[0]){
-          if(pages.indexOf(tab[0]) >= 0) setCurrentPage(tab[0])
-          else navigate('/' + lang)
-        }
-        else setCurrentPage('home')
-      }
-    }
-  }, [params, navigate])
+  const lang = params.lang
+  const tab = params['*']?.split('/')[0] ?? null
+
+  const currentBreadcrumbs = breadcrumbs[lang]
+  const pages = currentBreadcrumbs ? Object.keys(currentBreadcrumbs) : null
+
+  const currentPage = tab && pages && pages.includes(tab) ? tab : 'home'
+
+  useEffect(() => {
+    if (!lang || !acceptedLanguages.includes(lang)) {
+      navigate('/fr')
+      return
+    } else if(lang !== i18n.language) i18n.changeLanguage(lang)
+
+    if (tab && pages && !pages.includes(tab)) navigate('/' + lang)
+  }, [lang, tab, pages, navigate, i18n])
 
   const onCurrentPageChanged = (lang, pageId) => {
     navigate('/' + lang + (pageId ? '/' + pageId : ""))
   }
 
-  if(!breadcrumbs[params.lang]) return null
+  if(!breadcrumbs[lang]) return null
 
   return (
     <div className="App">
