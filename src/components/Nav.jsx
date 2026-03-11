@@ -32,7 +32,7 @@ const Nav = (props) => {
 
     const toggleLanguage = (languageId) => {
         if(languageId === 'fr' || languageId === 'en') {
-            props.setCurrentPage(languageId, '')
+            props.setCurrentPath(languageId, '')
             if(openedRef.current) {
                 setOpened(false)
                 openedRef.current = false
@@ -41,8 +41,8 @@ const Nav = (props) => {
     }
 
     const onOptionClicked = (optionId) => {
-        if(props.setCurrentPage) {
-            props.setCurrentPage(i18n.language, optionId)
+        if(props.setCurrentPath) {
+            props.setCurrentPath(i18n.language, optionId === "" ? [] : [optionId])
             if(openedRef.current) {
                 setOpened(false)
                 openedRef.current = false
@@ -50,7 +50,7 @@ const Nav = (props) => {
         }
     }
 
-    if(!props.breadcrumbs || Object.keys(props.breadcrumbs).length === 0) return 
+    if(!props.tabs || props.tabs.length === 0) return 
 
     return (
         <div className="Nav">
@@ -62,9 +62,9 @@ const Nav = (props) => {
                 </div>
                 <div className="NavContent">
                     <div className="NavOptions">
-                        {Object.keys(props.breadcrumbs).map((pageKey, pageId) => (
-                            pageKey !== "home" && <button onMouseEnter={()=>setHoveredOption(pageKey)} onMouseLeave={()=>setHoveredOption()} onClick={()=>onOptionClicked(pageKey)} className={"NavOption" + (props.currentPage === pageKey ? " current" : "")} key={"nav-page-" + pageId}>
-                                <Body primary={hoveredOption === pageKey || props.currentPage === pageKey}>{pageKey}</Body>
+                        {props.tabs.map((pageKey, pageId) => (
+                            pageKey !== "home" && <button onMouseEnter={()=>setHoveredOption(pageKey)} onMouseLeave={()=>setHoveredOption()} onClick={()=>onOptionClicked(pageKey)} className={"NavOption" + (props.currentTab === pageKey ? " current" : "")} key={"nav-page-" + pageId}>
+                                <Body primary={hoveredOption === pageKey || props.currentTab === pageKey}>{pageKey}</Body>
                             </button>
                         ))}
                     </div>

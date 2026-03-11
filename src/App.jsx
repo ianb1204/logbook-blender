@@ -1,9 +1,10 @@
 import { Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import './App.scss'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import Nav from './components/Nav'
 import breadcrumbs from './content/breadcrumbs.json'
 import { useTranslation } from 'react-i18next'
+import MarkedownReader from './components/MarkedownReader'
 
 const acceptedLanguages = ['fr', 'en']
 
@@ -14,12 +15,15 @@ const App = () => {
   const params = useParams()
 
   const lang = params.lang
-  const tab = params['*']?.split('/')[0] ?? null
 
-  const currentBreadcrumbs = breadcrumbs[lang]
-  const pages = currentBreadcrumbs ? Object.keys(currentBreadcrumbs) : null
+  const path = useMemo(() => {
+    if (!params['*']) return []
+    return params['*'].split('/')
+  }, [params['*']])
 
-  const currentPage = tab && pages && pages.includes(tab) ? tab : 'home'
+  const languageBreadcrumbs = useMemo(() => {
+    return breadcrumbs[lang]
+  }, [lang])
 
   useEffect(() => {
     if (!lang || !acceptedLanguages.includes(lang)) {
@@ -27,25 +31,43 @@ const App = () => {
       return
     } else if(lang !== i18n.language) i18n.changeLanguage(lang)
 
-    if (tab && pages && !pages.includes(tab)) navigate('/' + lang)
-  }, [lang, tab, pages, navigate, i18n])
+    let currentBreadcrumbs = {...languageBreadcrumbs}
+    let currentPath = []
+    for(const page of path){
+      let pageKey = page ?? "home"
+      if(currentBreadcrumbs[pageKey]) {
+        currentBreadcrumbs = currentBreadcrumbs[pageKey]
+        currentPath.push(pageKey)
+      } else{
+        navigate('/' + lang + (currentPath.length > 0 ? '/' + currentPath.join('/') : ""))
+      }
+    }
+  }, [lang, languageBreadcrumbs, path, navigate, i18n])
 
-  const onCurrentPageChanged = (lang, pageId) => {
-    navigate('/' + lang + (pageId ? '/' + pageId : ""))
+  const onCurrentPathChanged = (lang, newPath) => {
+    navigate('/' + lang + (newPath && newPath.length > 0 ? '/' + newPath.join('/') : ""))
+  }
+
+  const modules = import.meta.glob("./content/**/*.md", { query: '?raw' });
+
+  const buildModulesURL = (lang, path) => {
+    let f = breadcrumbs[lang]
+    for(const pathItem of path) f = f[pathItem]
+
+    if(!f) return
+
+    const url = './content/' + lang + (path.length > 0 ? '/' + path.join('/') : '') + (typeof f !== "string" ? '/' + f['home'] :  '.md')
+    return url
   }
 
   if(!breadcrumbs[lang]) return null
 
   return (
     <div className="App">
-      <Nav currentPage={currentPage} setCurrentPage={onCurrentPageChanged} breadcrumbs={breadcrumbs[params.lang]}/>
+      <Nav currentTab={path.length > 0 && path[0] ? path[0] : 'home'} setCurrentPath={onCurrentPathChanged} tabs={Object.keys(languageBreadcrumbs)}/>
       <div className="AppContainer">
         <div className="AppContent">
-          <Routes>
-            <Route path={'/'} element={<>{"Hello World - 1"}</>}/>
-            <Route path={'/home'} element={<>{"Hello World - 1"}</>}/>
-            <Route path={'/*'} element={<>{"Hello World - 2"}</>}/>
-          </Routes>
+          <MarkedownReader file={modules[buildModulesURL(lang, path)]}/>
         </div>
       </div>
     </div>
