@@ -12,12 +12,6 @@
         }
     },
     "en":{
-        "home":"home.md",
-        "page1en":{
-            "home":"page1en.md"
-        },
-        "page2en":{
-            "home":"page2en.md"
-        }
+        "home":"home.md"
     }
 }

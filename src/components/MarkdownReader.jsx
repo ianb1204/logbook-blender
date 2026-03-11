@@ -1,8 +1,9 @@
+import './MarkdownReader.scss'
 import { useEffect, useState } from 'react';
 import Markdown from 'react-markdown'
 import remarkGfm from "remark-gfm";
 
-const MarkedownReader = (props) => {
+const MarkdownReader = (props) => {
     const [content, setContent] = useState("");
 
     useEffect(() => {
@@ -14,10 +15,12 @@ const MarkedownReader = (props) => {
     }, [props.file]);
 
     return (
-        <Markdown remarkPlugins={[remarkGfm]}>
-            {content}
-        </Markdown>
+        <div className="MarkdownReader">
+            <Markdown remarkPlugins={[remarkGfm]}>
+                {content}
+            </Markdown>
+        </div>
     )
 }
 
-export default MarkedownReader
+export default MarkdownReader

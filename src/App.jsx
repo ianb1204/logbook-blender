@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react'
 import Nav from './components/Nav'
 import breadcrumbs from './content/breadcrumbs.json'
 import { useTranslation } from 'react-i18next'
-import MarkedownReader from './components/MarkedownReader'
+import MarkdownReader from './components/MarkdownReader'
 
 const acceptedLanguages = ['fr', 'en']
 
@@ -67,7 +67,7 @@ const App = () => {
       <Nav currentTab={path.length > 0 && path[0] ? path[0] : 'home'} setCurrentPath={onCurrentPathChanged} tabs={Object.keys(languageBreadcrumbs)}/>
       <div className="AppContainer">
         <div className="AppContent">
-          <MarkedownReader file={modules[buildModulesURL(lang, path)]}/>
+          <MarkdownReader file={modules[buildModulesURL(lang, path)]}/>
         </div>
       </div>
     </div>
