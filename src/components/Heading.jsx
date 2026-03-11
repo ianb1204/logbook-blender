@@ -9,6 +9,7 @@ const Heading = (props) => {
     cn += (props.weight ? " w" + props.weight : " w700")
     if(props.centered) cn += " centered"
     if(props.uppercase) cn += " uppercase"
+    if(props.capitalize) cn += " capitalize"
 
     return (
         props.type === "h1" ? <h1 className={cn}>{props.children}</h1>

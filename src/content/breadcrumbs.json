@@ -14,7 +14,13 @@
             "home": "mission.md"
         },
         "outil": {
-            "home": "outil.md"
+            "compilation": "compilation.md",
+            "home": "outil.md",
+            "structure": "structure.md",
+            "analyse": {
+                "home": "analyse.md",
+                "fichier1": "fichier1.md"
+            }
         }
     }
 }
