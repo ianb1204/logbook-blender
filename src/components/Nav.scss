@@ -7,6 +7,34 @@
     background-color: var(--background);
     border-bottom: 1px solid var(--borders);
     padding: 0 20px;
+    top: 0;
+    z-index: 10;
+    left: 0;
+    position: fixed;
+
+    .BackgroundOpacity{
+        width: 100%;
+        cursor: initial!important;
+        height: calc(100dvh - 80px);
+        position: fixed;
+        visibility: hidden;
+        background-color: rgba($color: #000000, $alpha: .25);
+        top: 80px;
+        left:0;
+        opacity: 0;
+        transition: 
+            opacity .2s 0s,
+            visibility 0s .2s;
+
+        &.visible{
+            opacity: 1;
+            visibility: visible;
+            z-index: 100;
+            transition: 
+                visibility 0s 0s,
+                opacity .2s 0s;
+        }
+    }
 
     .NavContainer{
         width: 100%;
@@ -19,12 +47,14 @@
         border-left: 1px solid var(--borders);
         border-right: 1px solid var(--borders);
         padding: 0 40px;
+        z-index: 1000;
 
         .NavTitle{
             flex-grow: 1;
         }
 
         .NavContent{
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -66,7 +96,7 @@
                 top: 80px;
                 left: 100%;
                 transform: translateX(0);
-                height: calc(100% - 80px);
+                height:calc(100dvh - 80px);
                 border-left: 1px solid var(--neutral300);
                 width: 300px;
                 flex-direction: column;

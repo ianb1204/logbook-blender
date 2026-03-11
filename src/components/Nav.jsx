@@ -54,6 +54,7 @@ const Nav = (props) => {
 
     return (
         <div className="Nav">
+            <button onClick={()=>{setOpened(false);openedRef.current = false}} className={"BackgroundOpacity" + (openedRef.current ? ' visible' : "")}/>
             <div className={"NavContainer" + (openedRef.current ? ' opened' : "")}>
                 <div className="NavTitle">
                     <button className="Title" onClick={() => onOptionClicked("")}>

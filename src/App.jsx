@@ -5,6 +5,7 @@ import Nav from './components/Nav'
 import breadcrumbs from './content/breadcrumbs.json'
 import { useTranslation } from 'react-i18next'
 import MarkdownReader from './components/MarkdownReader'
+import Menu from './components/Menu'
 
 const acceptedLanguages = ['fr', 'en']
 
@@ -60,17 +61,21 @@ const App = () => {
     return url
   }
 
-  if(!breadcrumbs[lang]) return null
+  if(!languageBreadcrumbs) return null
+
+  const currentTab = path.length > 0 && path[0] ? path[0] : 'home'
+  const currentPage = path.length === 1 && !path[0] ? 'home' : path[path.length -1]
+  let hasMenu = typeof languageBreadcrumbs[currentTab] !== "string" && Object.keys(languageBreadcrumbs[currentTab]).length > 1
 
   return (
     <div className="App">
-      <Nav currentTab={path.length > 0 && path[0] ? path[0] : 'home'} setCurrentPath={onCurrentPathChanged} tabs={Object.keys(languageBreadcrumbs)}/>
+      <Nav currentTab={currentTab} setCurrentPath={onCurrentPathChanged} tabs={Object.keys(languageBreadcrumbs)}/>
       <div className="AppContainer">
         <div className="AppContent">
-          <div className="Menu">
-            lal
+          {hasMenu && <Menu currentTab={currentTab} currentPage={currentPage} breadcrumbs={languageBreadcrumbs[currentTab]} setCurrentPath={(newPath)=>onCurrentPathChanged(lang, newPath)}/>}
+          <div className="Page">
+            <MarkdownReader file={modules[buildModulesURL(lang, path)]}/>
           </div>
-          <MarkdownReader file={modules[buildModulesURL(lang, path)]}/>
         </div>
       </div>
     </div>

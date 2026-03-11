@@ -15,13 +15,16 @@
     
     .AppContainer{
         width: 100%;
+        z-index: 1;
         flex-shrink: 1;
+        height: calc(100dvh - 80px);
         flex-grow: 1;
         background-color: var(--background);
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 0 20px;
+        padding: 80px 20px;
+        overflow-y: scroll;
 
         .AppContent{
             width: 100%;
@@ -30,30 +33,28 @@
             flex-shrink: 1;
             border-left: 1px solid var(--borders);
             border-right: 1px solid var(--borders);
-            padding: 40px;
             justify-content: center;
             display: flex;
-            gap: 40px;
-    
-            .Menu{
-                width: 300px;
-                height: 700px;
-                position: sticky;
-                top: 0;
-                flex-shrink: 0;
-                left: 0;
-                flex-direction: column;
-                display: flex;
-                background-color: red;
+
+            .Page{
+                width: 100%;
+                flex-grow: 1;
+                flex-shrink: 1;
+                padding: 40px;
             }
         }
     }
 
     @media screen and (max-width:1024px){
         .AppContainer{
+            // padding: 0;
+            // padding-top: 80px;
             .AppContent{
-                padding: 30px 20px;
                 border: none;
+
+                .Page {
+                    padding: 30px 20px;
+                }
             }
         }
     }
@@ -61,7 +62,9 @@
     @media screen and (max-width:600px){
         .AppContainer{
             .AppContent{
-                padding: 20px 10px;
+                .Page {
+                    padding: 20px 10px;
+                }
             }
         }
     }
