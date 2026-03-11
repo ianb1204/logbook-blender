@@ -1,5 +1,5 @@
 import {BrowserRouter, Navigate, Routes, Route} from 'react-router-dom'
-import App from "./pages/App.jsx";
+import App from "./App.jsx";
 
 const Router = (props) => {
     return (

@@ -1,0 +1,11 @@
+.MarkdownReader{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-shrink: 1;
+    // gap: 100px;
+}
+
+.markdown-body {
+  color-scheme: light;
+}

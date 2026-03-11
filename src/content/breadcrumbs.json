@@ -1,0 +1,20 @@
+{
+    "en": {
+        "home": "home.md"
+    },
+    "fr": {
+        "home": "home.md",
+        "contexte": {
+            "home": "contexte.md"
+        },
+        "explications": {
+            "home": "explications.md"
+        },
+        "mission": {
+            "home": "mission.md"
+        },
+        "outil": {
+            "home": "outil.md"
+        }
+    }
+}

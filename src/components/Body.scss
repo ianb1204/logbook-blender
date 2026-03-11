@@ -4,6 +4,7 @@
     word-wrap: break-word;
     color: var(--body);
     height: fit-content;
+    transition: all .2s;
 
     &.noUserSelection{
         -webkit-user-select: none; /* Safari, older Chrome/Opera */
@@ -20,6 +21,28 @@
 
     &.uppercase{
         text-transform: uppercase;
+    }
+
+    &.capitalize{
+        text-transform: capitalize;
+    }
+
+    &.underline{
+        text-decoration: underline;
+    }
+
+    &.white{
+        color: var(--neutral100);
+    }
+
+    &.hoverable{
+        &:hover{
+            color: var(--primary);
+        }
+    }
+
+    &.primary{
+        color: var(--primary);
     }
 
     &.small{

@@ -19,5 +19,83 @@
         border-left: 1px solid var(--borders);
         border-right: 1px solid var(--borders);
         padding: 0 40px;
+
+        .NavTitle{
+            flex-grow: 1;
+        }
+
+        .NavContent{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+            flex-shrink: 1;
+
+            .NavOptions{
+                display: flex;
+                gap: 50px;
+                align-items: center;
+            }
+
+            .NavSettings{
+                width: 110px;
+            }
+        }
+
+        .NavBurger{
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width : 1024px){
+    .Nav{
+        .NavContainer{
+            border: none;
+            padding: 0 20px;
+
+            &.opened{
+                .NavContent{
+                    transform: translateX(-100%);
+                }
+            }
+
+            .NavContent{
+                transition: all .3s;
+                position: absolute;
+                top: 80px;
+                left: 100%;
+                transform: translateX(0);
+                height: calc(100% - 80px);
+                border-left: 1px solid var(--neutral300);
+                width: 300px;
+                flex-direction: column;
+                background-color: var(--neutral100);
+                padding: 40px 0;
+
+                .NavOptions{
+                    flex-direction: column;
+                }
+            }
+
+            .NavBurger{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width : 600px){
+    .Nav{
+        .NavContainer{
+            padding: 0 10px;
+
+            .NavContent{
+                width: 100%;
+                border: none;
+            }
+        }
     }
 }

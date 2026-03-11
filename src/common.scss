@@ -1,9 +1,10 @@
 :root{
     --primary:#4D9AFF;
+    --secondary:#4b88d8;
     --neutral0:#000;
     --neutral100:#FFFFFF;
     --neutral150:#ebebeb;
-    --neutral200:#bbbbbb;
+    --neutral200:#d1d1d1;
     --neutral300:#929292;
     --neutral400:#636363;
     --neutral450:#2c2c2c;
@@ -13,4 +14,10 @@
     --body:var(--neutral450);
     --heading:var(--neutral500);
     --borders:var(--neutral300);
+}
+
+button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }

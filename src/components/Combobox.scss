@@ -1,0 +1,99 @@
+.Combobox{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+
+    .ComboboxContainer{
+        width: 100%;
+        position: relative;
+
+        &.disabled{
+            opacity: .6;
+            pointer-events: none;
+
+            .ComboboxHeader{
+                cursor:initial;
+            }
+
+            .Options{
+                .Option{
+                    cursor:initial;
+                }
+            }
+        }
+
+        &.opened{
+            .ComboboxHeader{
+                .ArrowIcon{
+                    img{
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+
+            .Options{
+                display: flex;
+            }
+        }
+
+        .ComboboxHeader{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            gap: 10px;
+            background-color: var(--neutral100);
+
+            .ArrowIcon{
+                width: 30px;
+                display: flex;
+                flex-shrink: 0;
+                align-items: center;
+                justify-content: center;
+
+                img{
+                    transition: all .3s;
+                    user-select: none;
+                    width: 100%;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        .Options{
+            display: flex;
+            flex-direction: column;
+            min-width: 100%;
+            position: absolute;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            border-radius: 10px;
+            display: none;
+            border: 2px solid var(--neutral300);
+
+            .Option{
+                width: 100%;
+                height: 50px;
+                background-color: var(--neutral100);
+                padding: 10px;
+                display: flex;
+                cursor: pointer;
+                align-items: center;
+
+                &.selected {
+                    background-color: var(--neutral200);
+                }
+
+                &:hover{
+                    background-color: var(--neutral200);
+                }
+            }
+        }
+    }
+}
