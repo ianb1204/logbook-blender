@@ -34,7 +34,6 @@
             flex-shrink: 1;
             border-left: 1px solid var(--borders);
             border-right: 1px solid var(--borders);
-            justify-content: center;
             display: flex;
 
             .Page{
@@ -42,6 +41,8 @@
                 flex-grow: 1;
                 flex-shrink: 1;
                 padding: 40px;
+                display: flex;
+                justify-content: center;
             }
         }
     }

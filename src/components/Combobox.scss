@@ -44,10 +44,9 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px;
-            border-radius: 10px;
             cursor: pointer;
             gap: 10px;
-            background-color: var(--neutral100);
+            background-color: var(--background);
 
             .ArrowIcon{
                 width: 30px;
@@ -73,14 +72,13 @@
             max-height: 200px;
             overflow-y: auto;
             z-index: 1000;
-            border-radius: 10px;
             display: none;
-            border: 2px solid var(--neutral300);
+            border: 1px solid var(--borders);
 
             .Option{
                 width: 100%;
                 height: 50px;
-                background-color: var(--neutral100);
+                background-color: var(--background);
                 padding: 10px;
                 display: flex;
                 cursor: pointer;

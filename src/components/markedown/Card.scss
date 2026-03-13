@@ -1,3 +1,40 @@
 .Card{
-    
+    width: 100%;
+    border: 1px solid var(--borders);
+    background-color: var(--background);
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: .12);
+    align-items: center;
+    transition: transform .2s;
+
+    .CardContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    &:hover{
+        transform: scale(1.02);
+    }
+
+    .CardContent{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .CardDivider{
+        height: 1px;
+        width: calc(100% - 40px);
+        background-color: var(--neutral200);
+    }
+
+    p{
+        margin: 0;
+    }
 }
