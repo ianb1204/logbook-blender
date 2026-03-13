@@ -50,10 +50,6 @@ Voir plus
 
 Registre de tout ce que j'ai pu apprendre ou comprendre concernant l'outil Blender et son développement.
 
-::::button{type="primary",label="voir plus"}
-lolo
-::::
-
 :::::
 
 ::::::

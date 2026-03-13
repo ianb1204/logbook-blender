@@ -1,7 +1,7 @@
 
 .App{
     width: 100%;
-    min-height: 100dvh;
+    height: 100dvh;
     position: absolute;
     top: 0;
     left: 0;
@@ -10,22 +10,21 @@
     color:var(--body);
     display: flex;
     align-items: center;
+    overflow-y: auto;
     justify-content: center;
     flex-direction: column;
     
     .AppContainer{
         width: 100%;
+        height: calc(100dvh - 60px);
         z-index: 1;
         flex-shrink: 1;
-        height: calc(100dvh - 80px);
         flex-grow: 1;
         background-color: var(--background);
         display: flex;
         align-items: center;
         flex-direction: column;
         padding: 0 20px;
-        padding-top: 80px;
-        overflow-y: scroll;
 
         .AppContent{
             width: 100%;

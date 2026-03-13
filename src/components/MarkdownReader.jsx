@@ -52,7 +52,6 @@ const MarkdownReader = (props) => {
                     card:Card,
                     grid:Grid,
                     button:({type, label}) => {
-                        console.log(type, label)
                         return <Button type={type} label={label} onClick={()=>{console.log("oui")}}/>
                     },
                     p: ({children}) => {
